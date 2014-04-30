@@ -1,9 +1,9 @@
-Formbuilder.registerField 'text',
+Formbuilder.registerField 'textarea',
 
-  order: 0
+  order: 10
 
   view: """
-    <input type='text' class='rf-size-<%= rf.get(Formbuilder.options.mappings.SIZE) %>' />
+    <textarea class='rf-size-<%= rf.get(Formbuilder.options.mappings.SIZE) %>'></textarea>
   """
 
   edit: """
@@ -12,7 +12,7 @@ Formbuilder.registerField 'text',
   """
 
   addButton: """
-    <span class='symbol'><span class='fa fa-font'></span></span> Input Field
+    <span class='symbol'><span class='fa fa-font'></span></span> Text Area
   """
 
   defaultAttributes: (attrs) ->
