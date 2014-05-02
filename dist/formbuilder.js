@@ -587,7 +587,9 @@
         MAX: 'field_options.max',
         MINLENGTH: 'field_options.minlength',
         MAXLENGTH: 'field_options.maxlength',
-        LENGTH_UNITS: 'field_options.min_max_length_units'
+        LENGTH_UNITS: 'field_options.min_max_length_units',
+        PRETEXT: 'field_options.pre_text',
+        POSTTEXT: 'field_options.post_text'
       },
       dict: {
         ALL_CHANGES_SAVED: 'All changes saved',
@@ -655,6 +657,16 @@
 }).call(this);
 
 (function() {
+  Formbuilder.registerField('camera', {
+    order: 65,
+    view: "<div id=\"camera\"><center><span class=\"fa fa-camera-retro fa-5x\"></span></center></div>",
+    edit: "",
+    addButton: "<span class=\"symbol\"><span class=\"fa fa-camera-retro\"></span></span> Camera"
+  });
+
+}).call(this);
+
+(function() {
   Formbuilder.registerField('checkboxes', {
     order: 10,
     view: "<% for (i in (rf.get(Formbuilder.options.mappings.OPTIONS) || [])) { %>\n  <div>\n    <label class='fb-option'>\n      <input type='checkbox' <%= rf.get(Formbuilder.options.mappings.OPTIONS)[i].checked && 'checked' %> onclick=\"javascript: return false;\" />\n      <%= rf.get(Formbuilder.options.mappings.OPTIONS)[i].label %>\n    </label>\n  </div>\n<% } %>\n\n<% if (rf.get(Formbuilder.options.mappings.INCLUDE_OTHER)) { %>\n  <div class='other-option'>\n    <label class='fb-option'>\n      <input type='checkbox' />\n      Other\n    </label>\n\n    <input type='text' />\n  </div>\n<% } %>",
@@ -672,6 +684,16 @@
       ];
       return attrs;
     }
+  });
+
+}).call(this);
+
+(function() {
+  Formbuilder.registerField('creditcard', {
+    order: 67,
+    view: "<div id=\"creditcard\"><center><span class=\"fa fa-credit-card fa-5x\"></span></center></div>",
+    edit: "",
+    addButton: "<span class=\"symbol\"><span class=\"fa fa-credit-card\"></span></span> Payment"
   });
 
 }).call(this);
@@ -730,6 +752,17 @@
 }).call(this);
 
 (function() {
+  Formbuilder.registerField('horizontal_rule', {
+    order: 5,
+    type: 'non_input',
+    view: "<hr/>",
+    edit: "",
+    addButton: "<span class=\"symbol\">&#95;</span> Horizontal Rule"
+  });
+
+}).call(this);
+
+(function() {
   Formbuilder.registerField('number', {
     order: 30,
     view: "<input type='text' />\n<% if (units = rf.get(Formbuilder.options.mappings.UNITS)) { %>\n  <%= units %>\n<% } %>",
@@ -741,14 +774,11 @@
 
 (function() {
   Formbuilder.registerField('paragraph', {
-    order: 5,
-    view: "<textarea class='rf-size-<%= rf.get(Formbuilder.options.mappings.SIZE) %>'></textarea>",
-    edit: "<%= Formbuilder.templates['edit/size']() %>\n<%= Formbuilder.templates['edit/min_max_length']() %>",
-    addButton: "<span class=\"symbol\">&#182;</span> Paragraph",
-    defaultAttributes: function(attrs) {
-      attrs.field_options.size = 'small';
-      return attrs;
-    }
+    order: 0,
+    type: 'non_input',
+    view: "<label class='section-name'><%= rf.get(Formbuilder.options.mappings.LABEL) %></label>\n<p><%= rf.get(Formbuilder.options.mappings.DESCRIPTION) %></p>",
+    edit: "<div class='fb-edit-section-header'>Label</div>\n<input type='text' data-rv-input='model.<%= Formbuilder.options.mappings.LABEL %>' />\n<textarea data-rv-input='model.<%= Formbuilder.options.mappings.DESCRIPTION %>'\n  placeholder='Add text to display on your form.'></textarea>",
+    addButton: "<span class=\"symbol\">&#182;</span> Paragraph"
   });
 
 }).call(this);
@@ -786,12 +816,11 @@
 }).call(this);
 
 (function() {
-  Formbuilder.registerField('section_break', {
-    order: 0,
-    type: 'non_input',
-    view: "<label class='section-name'><%= rf.get(Formbuilder.options.mappings.LABEL) %></label>\n<p><%= rf.get(Formbuilder.options.mappings.DESCRIPTION) %></p>",
-    edit: "<div class='fb-edit-section-header'>Label</div>\n<input type='text' data-rv-input='model.<%= Formbuilder.options.mappings.LABEL %>' />\n<textarea data-rv-input='model.<%= Formbuilder.options.mappings.DESCRIPTION %>'\n  placeholder='Add a longer description to this field'></textarea>",
-    addButton: "<span class='symbol'><span class='fa fa-minus'></span></span> Section Break"
+  Formbuilder.registerField('signature', {
+    order: 60,
+    view: "<div id=\"signature\"><center><span class=\"fa fa-pencil fa-5x\"></span></center></div>",
+    edit: "",
+    addButton: "<span class=\"symbol\"><span class=\"fa fa-pencil\"></span></span> Signature"
   });
 
 }).call(this);
@@ -801,7 +830,35 @@
     order: 0,
     view: "<input type='text' class='rf-size-<%= rf.get(Formbuilder.options.mappings.SIZE) %>' />",
     edit: "<%= Formbuilder.templates['edit/size']() %>\n<%= Formbuilder.templates['edit/min_max_length']() %>",
-    addButton: "<span class='symbol'><span class='fa fa-font'></span></span> Text",
+    addButton: "<span class='symbol'><span class='fa fa-font'></span></span> Input Field",
+    defaultAttributes: function(attrs) {
+      attrs.field_options.size = 'small';
+      return attrs;
+    }
+  });
+
+}).call(this);
+
+(function() {
+  Formbuilder.registerField('text_inline', {
+    order: 5,
+    view: "<%= rf.get(Formbuilder.options.mappings.PRETEXT) %> <input type='text' class='rf-size-<%= rf.get(Formbuilder.options.mappings.SIZE) %>' /> <%= rf.get(Formbuilder.options.mappings.POSTTEXT) %>",
+    edit: "<%= Formbuilder.templates['edit/pretext']() %>\n<%= Formbuilder.templates['edit/posttext']() %>\n<%= Formbuilder.templates['edit/size']() %>\n<%= Formbuilder.templates['edit/min_max_length']() %>",
+    addButton: "<span class='symbol'><span class='fa fa-font'></span></span> Input Inline",
+    defaultAttributes: function(attrs) {
+      attrs.field_options.size = 'small';
+      return attrs;
+    }
+  });
+
+}).call(this);
+
+(function() {
+  Formbuilder.registerField('textarea', {
+    order: 10,
+    view: "<textarea class='rf-size-<%= rf.get(Formbuilder.options.mappings.SIZE) %>'></textarea>",
+    edit: "<%= Formbuilder.templates['edit/size']() %>\n<%= Formbuilder.templates['edit/min_max_length']() %>",
+    addButton: "<span class='symbol'><span class='fa fa-font'></span></span> Text Area",
     defaultAttributes: function(attrs) {
       attrs.field_options.size = 'small';
       return attrs;
@@ -816,6 +873,16 @@
     view: "<div class='input-line'>\n  <span class='hours'>\n    <input type=\"text\" />\n    <label>HH</label>\n  </span>\n\n  <span class='above-line'>:</span>\n\n  <span class='minutes'>\n    <input type=\"text\" />\n    <label>MM</label>\n  </span>\n\n  <span class='above-line'>:</span>\n\n  <span class='seconds'>\n    <input type=\"text\" />\n    <label>SS</label>\n  </span>\n\n  <span class='am_pm'>\n    <select>\n      <option>AM</option>\n      <option>PM</option>\n    </select>\n  </span>\n</div>",
     edit: "",
     addButton: "<span class=\"symbol\"><span class=\"fa fa-clock-o\"></span></span> Time"
+  });
+
+}).call(this);
+
+(function() {
+  Formbuilder.registerField('video', {
+    order: 66,
+    view: "<div id=\"video\"><center><span class=\"fa fa-video-camera fa-5x\"></span></center></div>",
+    edit: "",
+    addButton: "<span class=\"symbol\"><span class=\"fa fa-video-camera\"></span></span> Video Camera"
   });
 
 }).call(this);
@@ -992,13 +1059,37 @@ __p += '\n\n<div class=\'fb-bottom-add\'>\n  <a class="js-add-option ' +
 return __p
 };
 
+this["Formbuilder"]["templates"]["edit/posttext"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape;
+with (obj) {
+__p += '<div class=\'fb-edit-section-header\'>Post-Text</div>\n<input type="text" data-rv-input="model.' +
+((__t = ( Formbuilder.options.mappings.POSTTEXT )) == null ? '' : __t) +
+'"/>\n\n\n\n';
+
+}
+return __p
+};
+
+this["Formbuilder"]["templates"]["edit/pretext"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape;
+with (obj) {
+__p += '<div class=\'fb-edit-section-header\'>Pre-Text</div>\n<input type="text" data-rv-input="model.' +
+((__t = ( Formbuilder.options.mappings.PRETEXT )) == null ? '' : __t) +
+'"/>\n\n\n\n';
+
+}
+return __p
+};
+
 this["Formbuilder"]["templates"]["edit/size"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
 __p += '<div class=\'fb-edit-section-header\'>Size</div>\n<select data-rv-value="model.' +
 ((__t = ( Formbuilder.options.mappings.SIZE )) == null ? '' : __t) +
-'">\n  <option value="small">Small</option>\n  <option value="medium">Medium</option>\n  <option value="large">Large</option>\n</select>\n';
+'">\n  <option value="xsmall">X-Small</option>\n  <option value="small">Small</option>\n  <option value="medium">Medium</option>\n  <option value="large">Large</option>\n</select>\n';
 
 }
 return __p
@@ -1037,7 +1128,7 @@ obj || (obj = {});
 var __t, __p = '', __e = _.escape, __j = Array.prototype.join;
 function print() { __p += __j.call(arguments, '') }
 with (obj) {
-__p += '<div class=\'fb-tab-pane active\' id=\'addField\'>\n  <div class=\'fb-add-field-types\'>\n    <div class=\'section\'>\n      ';
+__p += '<div class=\'fb-tab-pane active\' id=\'addField\'>\n  <div class=\'fb-add-field-types\'>\n    <span class=\'fb-section-heading\'>Form Elements</span>\n    <div class=\'section\'>\n      ';
  _.each(_.sortBy(Formbuilder.inputFields, 'order'), function(f){ ;
 __p += '\n        <a data-field-type="' +
 ((__t = ( f.field_type )) == null ? '' : __t) +
@@ -1047,7 +1138,7 @@ __p += '\n        <a data-field-type="' +
 ((__t = ( f.addButton )) == null ? '' : __t) +
 '\n        </a>\n      ';
  }); ;
-__p += '\n    </div>\n\n    <div class=\'section\'>\n      ';
+__p += '\n    </div>\n    <span class=\'fb-section-heading\'>Content Elements</span>\n    <div class=\'section\'>\n      ';
  _.each(_.sortBy(Formbuilder.nonInputFields, 'order'), function(f){ ;
 __p += '\n        <a data-field-type="' +
 ((__t = ( f.field_type )) == null ? '' : __t) +
