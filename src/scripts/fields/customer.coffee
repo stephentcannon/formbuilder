@@ -1,11 +1,24 @@
-Formbuilder.registerField 'address',
+Formbuilder.registerField 'customer',
 
-  order: 8
+  order: 6
 
   view: """
+  
+    <div class='input-line'>
+      <span class='firstname'>
+        <input type='text' />
+        <label>First Name</label>
+      </span>
+
+      <span class='lastname'>
+        <input type='text' />
+        <label>Last Name</label>
+      </span>
+    </div>
+    
     <div class='input-line'>
       <span class='street'>
-        <input type='text' />
+        <input type='text' style='width: 365px' />
         <label>Address</label>
       </span>
     </div>
@@ -33,10 +46,22 @@ Formbuilder.registerField 'address',
         <label>Country</label>
       </span>
     </div>
+    
+    <div class='input-line'>
+      <span class='phone'>
+        <input type='text' />
+        <label>Phone</label>
+      </span>
+
+      <span class='Email'>
+        <input type='text' />
+        <label>Email</label>
+      </span>
+    </div>
   """
 
   edit: ""
 
   addButton: """
-    <span class="symbol"><span class="fa fa-home"></span></span> Address
+    <span class="symbol"><span class="fa fa-user"></span></span> Customer
   """

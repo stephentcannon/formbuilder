@@ -1,6 +1,6 @@
 Formbuilder.registerField 'textarea',
 
-  order: 10
+  order: 4
 
   view: """
     <textarea class='rf-size-<%= rf.get(Formbuilder.options.mappings.SIZE) %>'></textarea>

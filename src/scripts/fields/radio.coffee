@@ -1,6 +1,6 @@
 Formbuilder.registerField 'radio',
 
-  order: 15
+  order: 14
 
   view: """
     <% for (i in (rf.get(Formbuilder.options.mappings.OPTIONS) || [])) { %>

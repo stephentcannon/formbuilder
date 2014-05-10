@@ -1,6 +1,6 @@
 Formbuilder.registerField 'text_inline',
 
-  order: 5
+  order: 2
 
   view: """
     <%= rf.get(Formbuilder.options.mappings.PRETEXT) %> <input type='text' class='rf-size-<%= rf.get(Formbuilder.options.mappings.SIZE) %>' /> <%= rf.get(Formbuilder.options.mappings.POSTTEXT) %>
