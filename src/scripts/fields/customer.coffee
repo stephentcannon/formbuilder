@@ -60,7 +60,9 @@ Formbuilder.registerField 'customer',
     </div>
   """
 
-  edit: ""
+  edit: """
+    <%= Formbuilder.templates['edit/customer_record_options']() %>
+  """
 
   addButton: """
     <span class="symbol"><span class="fa fa-user"></span></span> Customer

@@ -557,6 +557,7 @@
         attrs[Formbuilder.options.mappings.LABEL] = 'Untitled';
         attrs[Formbuilder.options.mappings.FIELD_TYPE] = field_type;
         attrs[Formbuilder.options.mappings.REQUIRED] = true;
+        attrs[Formbuilder.options.mappings.CREATE_CUSTOMER_RECORD] = true;
         attrs['field_options'] = {};
         return (typeof (_base = Formbuilder.fields[field_type]).defaultAttributes === "function" ? _base.defaultAttributes(attrs) : void 0) || attrs;
       },
@@ -578,11 +579,13 @@
         FIELD_TYPE: 'field_type',
         REQUIRED: 'required',
         ADMIN_ONLY: 'admin_only',
+        ADMIN_ONLY_USER_VISIBLE: 'admin_only_user_visible',
         OPTIONS: 'field_options.options',
         DESCRIPTION: 'field_options.description',
         INCLUDE_OTHER: 'field_options.include_other_option',
         INCLUDE_BLANK: 'field_options.include_blank_option',
         INTEGER_ONLY: 'field_options.integer_only',
+        CREATE_CUSTOMER_RECORD: 'field_options.create_customer_record',
         MIN: 'field_options.min',
         MAX: 'field_options.max',
         MINLENGTH: 'field_options.minlength',
@@ -651,7 +654,7 @@
     order: 8,
     view: "<div class='input-line'>\n  <span class='street'>\n    <input type='text' />\n    <label>Address</label>\n  </span>\n</div>\n\n<div class='input-line'>\n  <span class='city'>\n    <input type='text' />\n    <label>City</label>\n  </span>\n\n  <span class='state'>\n    <input type='text' />\n    <label>State / Province / Region</label>\n  </span>\n</div>\n\n<div class='input-line'>\n  <span class='zip'>\n    <input type='text' />\n    <label>Zipcode</label>\n  </span>\n\n  <span class='country'>\n    <select><option>United States</option></select>\n    <label>Country</label>\n  </span>\n</div>",
     edit: "",
-    addButton: "<span class=\"symbol\"><span class=\"fa fa-home\"></span></span> Customer"
+    addButton: "<span class=\"symbol\"><span class=\"fa fa-home\"></span></span> Address"
   });
 
 }).call(this);
@@ -689,21 +692,11 @@
 }).call(this);
 
 (function() {
-  Formbuilder.registerField('creditcard', {
-    order: 67,
-    view: "<div id=\"creditcard\"><center><span class=\"fa fa-credit-card fa-5x\"></span></center></div>",
-    edit: "",
-    addButton: "<span class=\"symbol\"><span class=\"fa fa-credit-card\"></span></span> Payment"
-  });
-
-}).call(this);
-
-(function() {
   Formbuilder.registerField('customer', {
     order: 6,
-    view: "\n  <div class='input-line'>\n    <span class='firstname'>\n      <input type='text' />\n      <label>First Name</label>\n    </span>\n\n    <span class='lastname'>\n      <input type='text' />\n      <label>Last Name</label>\n    </span>\n  </div>\n  \n  <div class='input-line'>\n    <span class='street'>\n      <input type='text' />\n      <label>Address</label>\n    </span>\n  </div>\n\n  <div class='input-line'>\n    <span class='city'>\n      <input type='text' />\n      <label>City</label>\n    </span>\n\n    <span class='state'>\n      <input type='text' />\n      <label>State / Province / Region</label>\n    </span>\n  </div>\n\n  <div class='input-line'>\n    <span class='zip'>\n      <input type='text' />\n      <label>Zipcode</label>\n    </span>\n\n    <span class='country'>\n      <select><option>United States</option></select>\n      <label>Country</label>\n    </span>\n  </div>\n  \n  <div class='input-line'>\n    <span class='phone'>\n      <input type='text' />\n      <label>Phone</label>\n    </span>\n\n    <span class='Email'>\n      <input type='text' />\n      <label>Email</label>\n    </span>\n  </div>",
-    edit: "",
-    addButton: "<span class=\"symbol\"><span class=\"fa fa-home\"></span></span> Address"
+    view: "\n  <div class='input-line'>\n    <span class='firstname'>\n      <input type='text' />\n      <label>First Name</label>\n    </span>\n\n    <span class='lastname'>\n      <input type='text' />\n      <label>Last Name</label>\n    </span>\n  </div>\n  \n  <div class='input-line'>\n    <span class='street'>\n      <input type='text' style='width: 365px' />\n      <label>Address</label>\n    </span>\n  </div>\n\n  <div class='input-line'>\n    <span class='city'>\n      <input type='text' />\n      <label>City</label>\n    </span>\n\n    <span class='state'>\n      <input type='text' />\n      <label>State / Province / Region</label>\n    </span>\n  </div>\n\n  <div class='input-line'>\n    <span class='zip'>\n      <input type='text' />\n      <label>Zipcode</label>\n    </span>\n\n    <span class='country'>\n      <select><option>United States</option></select>\n      <label>Country</label>\n    </span>\n  </div>\n  \n  <div class='input-line'>\n    <span class='phone'>\n      <input type='text' />\n      <label>Phone</label>\n    </span>\n\n    <span class='Email'>\n      <input type='text' />\n      <label>Email</label>\n    </span>\n  </div>",
+    edit: "<%= Formbuilder.templates['edit/customer_record_options']() %>",
+    addButton: "<span class=\"symbol\"><span class=\"fa fa-user\"></span></span> Customer"
   });
 
 }).call(this);
@@ -798,7 +791,7 @@
     order: 14,
     view: "<% for (i in (rf.get(Formbuilder.options.mappings.OPTIONS) || [])) { %>\n  <div>\n    <label class='fb-option'>\n      <input type='radio' <%= rf.get(Formbuilder.options.mappings.OPTIONS)[i].checked && 'checked' %> onclick=\"javascript: return false;\" />\n      <%= rf.get(Formbuilder.options.mappings.OPTIONS)[i].label %>\n    </label>\n  </div>\n<% } %>\n\n<% if (rf.get(Formbuilder.options.mappings.INCLUDE_OTHER)) { %>\n  <div class='other-option'>\n    <label class='fb-option'>\n      <input type='radio' />\n      Other\n    </label>\n\n    <input type='text' />\n  </div>\n<% } %>",
     edit: "<%= Formbuilder.templates['edit/options']({ includeOther: true }) %>",
-    addButton: "<span class=\"symbol\"><span class=\"fa fa-circle-o\"></span></span> Multiple Choice",
+    addButton: "<span class=\"symbol\"><span class=\"fa fa-circle-o\"></span></span> Radio Buttons",
     defaultAttributes: function(attrs) {
       attrs.field_options.options = [
         {
@@ -938,11 +931,13 @@ this["Formbuilder"]["templates"]["edit/checkboxes"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<label>\n  <input type=\'checkbox\' data-rv-checked=\'model.' +
+__p += '<div class=\'fb-edit-section-header\'>General Options</div>\n<label>\n  <input type=\'checkbox\' data-rv-checked=\'model.' +
 ((__t = ( Formbuilder.options.mappings.REQUIRED )) == null ? '' : __t) +
-'\' />\n  Required\n</label>\n<label>\n  <input type=\'checkbox\' data-rv-checked=\'model.' +
+'\' />\n  Required\n</label><br/>\n<label>\n  <input type=\'checkbox\' data-rv-checked=\'model.' +
 ((__t = ( Formbuilder.options.mappings.ADMIN_ONLY )) == null ? '' : __t) +
-'\' />\n  Admin only\n</label>';
+'\' />\n  Admin only\n</label><br/>\n<label>\n  <input type=\'checkbox\' data-rv-checked=\'model.' +
+((__t = ( Formbuilder.options.mappings.ADMIN_ONLY_USER_VISIBLE )) == null ? '' : __t) +
+'\' />\n  Admin only visible to user\n</label>';
 
 }
 return __p
@@ -957,6 +952,18 @@ __p += '<div class=\'fb-edit-section-header\'>Label</div>\n\n<div class=\'fb-com
 '\n  </div>\n  <div class=\'fb-common-checkboxes\'>\n    ' +
 ((__t = ( Formbuilder.templates['edit/checkboxes']() )) == null ? '' : __t) +
 '\n  </div>\n  <div class=\'fb-clear\'></div>\n</div>\n';
+
+}
+return __p
+};
+
+this["Formbuilder"]["templates"]["edit/customer_record_options"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape;
+with (obj) {
+__p += '<div class=\'fb-edit-section-header\'>Customer Options</div>\n<label>\n  <input type=\'checkbox\' data-rv-checked=\'model.' +
+((__t = ( Formbuilder.options.mappings.CREATE_CUSTOMER_RECORD )) == null ? '' : __t) +
+'\' />\n  Create a customer record\n</label>\n';
 
 }
 return __p
@@ -1012,7 +1019,7 @@ __p += '<div class=\'fb-edit-section-header\'>Length Limit</div>\n\nMin\n<input 
 ((__t = ( Formbuilder.options.mappings.MAXLENGTH )) == null ? '' : __t) +
 '" style="width: 30px" />\n\n&nbsp;&nbsp;\n\n<select data-rv-value="model.' +
 ((__t = ( Formbuilder.options.mappings.LENGTH_UNITS )) == null ? '' : __t) +
-'" style="width: auto;">\n  <option value="characters">characters</option>\n  <option value="words">words</option>\n</select>\n';
+'" style="width: auto;">\n  <option value="characters">characters</option>\n  <option value="words">words</option>\n  <option value="range">number range</option>\n</select>\n';
 
 }
 return __p

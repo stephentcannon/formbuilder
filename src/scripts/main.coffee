@@ -361,6 +361,7 @@ class Formbuilder
       attrs[Formbuilder.options.mappings.LABEL] = 'Untitled'
       attrs[Formbuilder.options.mappings.FIELD_TYPE] = field_type
       attrs[Formbuilder.options.mappings.REQUIRED] = true
+      attrs[Formbuilder.options.mappings.CREATE_CUSTOMER_RECORD] = true
       attrs['field_options'] = {}
       Formbuilder.fields[field_type].defaultAttributes?(attrs) || attrs
 
@@ -381,11 +382,13 @@ class Formbuilder
       FIELD_TYPE: 'field_type'
       REQUIRED: 'required'
       ADMIN_ONLY: 'admin_only'
+      ADMIN_ONLY_USER_VISIBLE: 'admin_only_user_visible'
       OPTIONS: 'field_options.options'
       DESCRIPTION: 'field_options.description'
       INCLUDE_OTHER: 'field_options.include_other_option'
       INCLUDE_BLANK: 'field_options.include_blank_option'
       INTEGER_ONLY: 'field_options.integer_only'
+      CREATE_CUSTOMER_RECORD: 'field_options.create_customer_record'
       MIN: 'field_options.min'
       MAX: 'field_options.max'
       MINLENGTH: 'field_options.minlength'
