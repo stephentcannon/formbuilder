@@ -67,3 +67,7 @@ Formbuilder.registerField 'customer',
   addButton: """
     <span class="symbol"><span class="fa fa-user"></span></span> Customer
   """
+  
+  defaultAttributes: (attrs) ->
+    attrs.field_options.create_customer_record = true
+    attrs

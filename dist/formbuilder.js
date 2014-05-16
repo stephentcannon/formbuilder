@@ -557,7 +557,6 @@
         attrs[Formbuilder.options.mappings.LABEL] = 'Untitled';
         attrs[Formbuilder.options.mappings.FIELD_TYPE] = field_type;
         attrs[Formbuilder.options.mappings.REQUIRED] = true;
-        attrs[Formbuilder.options.mappings.CREATE_CUSTOMER_RECORD] = true;
         attrs['field_options'] = {};
         return (typeof (_base = Formbuilder.fields[field_type]).defaultAttributes === "function" ? _base.defaultAttributes(attrs) : void 0) || attrs;
       },
@@ -696,7 +695,11 @@
     order: 6,
     view: "\n  <div class='input-line'>\n    <span class='firstname'>\n      <input type='text' />\n      <label>First Name</label>\n    </span>\n\n    <span class='lastname'>\n      <input type='text' />\n      <label>Last Name</label>\n    </span>\n  </div>\n  \n  <div class='input-line'>\n    <span class='street'>\n      <input type='text' style='width: 365px' />\n      <label>Address</label>\n    </span>\n  </div>\n\n  <div class='input-line'>\n    <span class='city'>\n      <input type='text' />\n      <label>City</label>\n    </span>\n\n    <span class='state'>\n      <input type='text' />\n      <label>State / Province / Region</label>\n    </span>\n  </div>\n\n  <div class='input-line'>\n    <span class='zip'>\n      <input type='text' />\n      <label>Zipcode</label>\n    </span>\n\n    <span class='country'>\n      <select><option>United States</option></select>\n      <label>Country</label>\n    </span>\n  </div>\n  \n  <div class='input-line'>\n    <span class='phone'>\n      <input type='text' />\n      <label>Phone</label>\n    </span>\n\n    <span class='Email'>\n      <input type='text' />\n      <label>Email</label>\n    </span>\n  </div>",
     edit: "<%= Formbuilder.templates['edit/customer_record_options']() %>",
-    addButton: "<span class=\"symbol\"><span class=\"fa fa-user\"></span></span> Customer"
+    addButton: "<span class=\"symbol\"><span class=\"fa fa-user\"></span></span> Customer",
+    defaultAttributes: function(attrs) {
+      attrs.field_options.create_customer_record = true;
+      return attrs;
+    }
   });
 
 }).call(this);
@@ -935,9 +938,7 @@ __p += '<div class=\'fb-edit-section-header\'>General Options</div>\n<label>\n  
 ((__t = ( Formbuilder.options.mappings.REQUIRED )) == null ? '' : __t) +
 '\' />\n  Required\n</label><br/>\n<label>\n  <input type=\'checkbox\' data-rv-checked=\'model.' +
 ((__t = ( Formbuilder.options.mappings.ADMIN_ONLY )) == null ? '' : __t) +
-'\' />\n  Admin only\n</label><br/>\n<label>\n  <input type=\'checkbox\' data-rv-checked=\'model.' +
-((__t = ( Formbuilder.options.mappings.ADMIN_ONLY_USER_VISIBLE )) == null ? '' : __t) +
-'\' />\n  Admin only visible to user\n</label>';
+'\' />\n  Admin only\n</label><br/>\n';
 
 }
 return __p
