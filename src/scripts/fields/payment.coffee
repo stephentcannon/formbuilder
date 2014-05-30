@@ -1,9 +1,9 @@
-Formbuilder.registerField 'creditcard',
+Formbuilder.registerField 'payment',
 
   order: 67
 
   view: """
-    <div id="creditcard"><center><span class="fa fa-credit-card fa-5x"></span></center></div>
+    <div id="payment"><center><span class="fa fa-credit-card fa-5x"></span></center></div>
   """
 
   edit: ""
