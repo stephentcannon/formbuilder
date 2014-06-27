@@ -578,7 +578,6 @@
         FIELD_TYPE: 'field_type',
         REQUIRED: 'required',
         ADMIN_ONLY: 'admin_only',
-        ADMIN_ONLY_USER_VISIBLE: 'admin_only_user_visible',
         OPTIONS: 'field_options.options',
         DESCRIPTION: 'field_options.description',
         INCLUDE_OTHER: 'field_options.include_other_option',
@@ -691,6 +690,16 @@
 }).call(this);
 
 (function() {
+  Formbuilder.registerField('datetime-local', {
+    order: 26,
+    view: "<div class='input-line'>\n  <span class='color'>\n    <input type=\"color\" />\n    <label>Color</label>\n  </span>\n</div>",
+    edit: "",
+    addButton: "<span class=\"symbol\"><span class=\"fa fa-th\"></span></span> Color Picker"
+  });
+
+}).call(this);
+
+(function() {
   Formbuilder.registerField('customer', {
     order: 6,
     view: "\n  <div class='input-line'>\n    <span class='firstname'>\n      <input type='text' />\n      <label>First Name</label>\n    </span>\n\n    <span class='lastname'>\n      <input type='text' />\n      <label>Last Name</label>\n    </span>\n  </div>\n  \n  <div class='input-line'>\n    <span class='street'>\n      <input type='text' style='width: 365px' />\n      <label>Address</label>\n    </span>\n  </div>\n\n  <div class='input-line'>\n    <span class='city'>\n      <input type='text' />\n      <label>City</label>\n    </span>\n\n    <span class='state'>\n      <input type='text' />\n      <label>State / Province / Region</label>\n    </span>\n  </div>\n\n  <div class='input-line'>\n    <span class='zip'>\n      <input type='text' />\n      <label>Zipcode</label>\n    </span>\n\n    <span class='country'>\n      <select><option>United States</option></select>\n      <label>Country</label>\n    </span>\n  </div>\n  \n  <div class='input-line'>\n    <span class='phone'>\n      <input type='text' />\n      <label>Phone</label>\n    </span>\n\n    <span class='Email'>\n      <input type='text' />\n      <label>Email</label>\n    </span>\n  </div>",
@@ -707,9 +716,19 @@
 (function() {
   Formbuilder.registerField('date', {
     order: 20,
-    view: "<div class='input-line'>\n  <span class='month'>\n    <input type=\"text\" />\n    <label>MM</label>\n  </span>\n\n  <span class='above-line'>/</span>\n\n  <span class='day'>\n    <input type=\"text\" />\n    <label>DD</label>\n  </span>\n\n  <span class='above-line'>/</span>\n\n  <span class='year'>\n    <input type=\"text\" />\n    <label>YYYY</label>\n  </span>\n</div>",
+    view: "<div class='input-line'>\n  <span class='date'>\n    <input type=\"date\" />\n    <label>Date</label>\n  </span>\n</div>",
     edit: "",
     addButton: "<span class=\"symbol\"><span class=\"fa fa-calendar\"></span></span> Date"
+  });
+
+}).call(this);
+
+(function() {
+  Formbuilder.registerField('datetime-local', {
+    order: 26,
+    view: "<div class='input-line'>\n  <span class='datetime-local'>\n    <input type=\"datetime-local\" />\n    <label>Time</label>\n  </span>\n</div>",
+    edit: "",
+    addButton: "<span class=\"symbol\"><span class=\"fa fa-calendar-o\"></span> <span class=\"fa-clock-o\"></span></span> Date Time"
   });
 
 }).call(this);
@@ -775,16 +794,6 @@
     view: "<label class='section-name'><%= rf.get(Formbuilder.options.mappings.LABEL) %></label>\n<p><%= rf.get(Formbuilder.options.mappings.DESCRIPTION) %></p>",
     edit: "<div class='fb-edit-section-header'>Label</div>\n<input type='text' data-rv-input='model.<%= Formbuilder.options.mappings.LABEL %>' />\n<textarea data-rv-input='model.<%= Formbuilder.options.mappings.DESCRIPTION %>'\n  placeholder='Add text to display on your form.'></textarea>",
     addButton: "<span class=\"symbol\">&#182;</span> Paragraph"
-  });
-
-}).call(this);
-
-(function() {
-  Formbuilder.registerField('payment', {
-    order: 67,
-    view: "<div id=\"payment\"><center><span class=\"fa fa-credit-card fa-5x\"></span></center></div>",
-    edit: "",
-    addButton: "<span class=\"symbol\"><span class=\"fa fa-credit-card\"></span></span> Payment"
   });
 
 }).call(this);
@@ -876,7 +885,7 @@
 (function() {
   Formbuilder.registerField('time', {
     order: 25,
-    view: "<div class='input-line'>\n  <span class='hours'>\n    <input type=\"text\" />\n    <label>HH</label>\n  </span>\n\n  <span class='above-line'>:</span>\n\n  <span class='minutes'>\n    <input type=\"text\" />\n    <label>MM</label>\n  </span>\n\n  <span class='above-line'>:</span>\n\n  <span class='seconds'>\n    <input type=\"text\" />\n    <label>SS</label>\n  </span>\n\n  <span class='am_pm'>\n    <select>\n      <option>AM</option>\n      <option>PM</option>\n    </select>\n  </span>\n</div>",
+    view: "<div class='input-line'>\n  <span class='time'>\n    <input type=\"time\" />\n    <label>Time</label>\n  </span>\n</div>",
     edit: "",
     addButton: "<span class=\"symbol\"><span class=\"fa fa-clock-o\"></span></span> Time"
   });
@@ -895,6 +904,18 @@
 
 this["Formbuilder"] = this["Formbuilder"] || {};
 this["Formbuilder"]["templates"] = this["Formbuilder"]["templates"] || {};
+
+this["Formbuilder"]["templates"]["edit/admin_only_checkbox"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape;
+with (obj) {
+__p += '<label>\n  <input type=\'checkbox\' data-rv-checked=\'model.' +
+((__t = ( Formbuilder.options.mappings.ADMIN_ONLY )) == null ? '' : __t) +
+'\' />\n  Admin only\n</label><br/>\n';
+
+}
+return __p
+};
 
 this["Formbuilder"]["templates"]["edit/base"] = function(obj) {
 obj || (obj = {});
@@ -934,7 +955,9 @@ __p +=
 ((__t = ( Formbuilder.templates['edit/base_header']() )) == null ? '' : __t) +
 '\n' +
 ((__t = ( Formbuilder.fields[rf.get(Formbuilder.options.mappings.FIELD_TYPE)].edit({rf: rf}) )) == null ? '' : __t) +
-'\n';
+'\n<div class=\'fb-common-wrapper\'>\n  <div class=\'fb-edit-section-header\'>General Options</div>\n    <div class=\'fb-common-checkboxes\'>\n      ' +
+((__t = ( Formbuilder.templates['edit/admin_only_checkbox']() )) == null ? '' : __t) +
+'\n    </div>\n  </div>\n</div>\n';
 
 }
 return __p
@@ -944,11 +967,11 @@ this["Formbuilder"]["templates"]["edit/checkboxes"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<div class=\'fb-edit-section-header\'>General Options</div>\n<label>\n  <input type=\'checkbox\' data-rv-checked=\'model.' +
-((__t = ( Formbuilder.options.mappings.REQUIRED )) == null ? '' : __t) +
-'\' />\n  Required\n</label><br/>\n<label>\n  <input type=\'checkbox\' data-rv-checked=\'model.' +
-((__t = ( Formbuilder.options.mappings.ADMIN_ONLY )) == null ? '' : __t) +
-'\' />\n  Admin only\n</label><br/>\n';
+__p += '<div class=\'fb-edit-section-header\'>General Options</div>\n' +
+((__t = ( Formbuilder.templates['edit/required_checkbox']() )) == null ? '' : __t) +
+'\n' +
+((__t = ( Formbuilder.templates['edit/admin_only_checkbox']() )) == null ? '' : __t) +
+'\n';
 
 }
 return __p
@@ -1086,6 +1109,18 @@ with (obj) {
 __p += '<div class=\'fb-edit-section-header\'>Pre-Text</div>\n<input type="text" data-rv-input="model.' +
 ((__t = ( Formbuilder.options.mappings.PRETEXT )) == null ? '' : __t) +
 '"/>\n\n\n\n';
+
+}
+return __p
+};
+
+this["Formbuilder"]["templates"]["edit/required_checkbox"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape;
+with (obj) {
+__p += '<label>\n  <input type=\'checkbox\' data-rv-checked=\'model.' +
+((__t = ( Formbuilder.options.mappings.REQUIRED )) == null ? '' : __t) +
+'\' />\n  Required\n</label><br/>';
 
 }
 return __p

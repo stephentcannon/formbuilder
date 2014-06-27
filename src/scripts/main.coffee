@@ -381,7 +381,6 @@ class Formbuilder
       FIELD_TYPE: 'field_type'
       REQUIRED: 'required'
       ADMIN_ONLY: 'admin_only'
-      ADMIN_ONLY_USER_VISIBLE: 'admin_only_user_visible'
       OPTIONS: 'field_options.options'
       DESCRIPTION: 'field_options.description'
       INCLUDE_OTHER: 'field_options.include_other_option'
