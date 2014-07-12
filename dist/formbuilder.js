@@ -1223,7 +1223,7 @@ this["Formbuilder"]["templates"]["partials/left_side"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<div class=\'fb-left\'>\n  <ul class=\'fb-tabs\'>\n    <li class=\'active\'><a data-target=\'#addField\'>Add new field</a></li>\n    <li><a data-target=\'#editField\'>Edit field</a></li>\n  </ul>\n\n  <div class=\'fb-tab-content\'>\n    ' +
+__p += '<div class=\'fb-left\'>\n  <ul class=\'fb-tabs\'>\n    <li class=\'active\'><a data-target=\'#addField\'>Add Element</a></li>\n    <li><a data-target=\'#editField\'>Edit Element</a></li>\n  </ul>\n\n  <div class=\'fb-tab-content\'>\n    ' +
 ((__t = ( Formbuilder.templates['partials/add_field']() )) == null ? '' : __t) +
 '\n    ' +
 ((__t = ( Formbuilder.templates['partials/edit_field']() )) == null ? '' : __t) +
@@ -1237,7 +1237,7 @@ this["Formbuilder"]["templates"]["partials/right_side"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<div class=\'fb-right\'>\n  <div class=\'fb-no-response-fields\'><h4>This is your waiver template canvas.</h4></h4><h4>Add elements from the left by doing the following.</h4><ul><li><h5>Click elements on the left.</h5></li><li><h5>Drag and drop elements on the left.</h5></li><li><h5>Change the template name, status, acccess url and exit url by clicking them above.</h5></li><li><h5>Work worry free! Your template auto-saves your work.</h5></li></ul></div>\n  <div class=\'fb-response-fields\'></div>\n</div>\n';
+__p += '<div class=\'fb-right\'>\n  <div class=\'fb-no-response-fields\'>\n    <h4>Below is your waiver template canvas.</h4>\n      <ul>\n        <li><h5>The <b>Add Element</b> tab on the left is your palette of waiver form elements.</h5></li>\n        <li><h5>Click an element on the left.  It will appear below.</h5></li>\n        <li><h5>Or drag an element on the left and drop  it on the canvas below.</h5></li>\n        <li><h5>When you select a waiver form element on the canvas the <b>Edit Element</b> tab on the left lets you configure various properties.</h5></li>\n        <li><h5>At the very top you can change the template name, status, acccess url and exit url. Just click them.</h5></li>\n        <li><h5>Work worry free! Your template auto-saves your work.</h5></li>\n      </ul>\n    <center><h3><i class="fa fa-hand-o-down"></i> Get Started! Drag an element from the left and drop it below this line! <i class="fa fa-hand-o-down"></i></h3></center>\n    <hr/>\n  </div>\n  <div class=\'fb-response-fields\'></div>\n</div>\n';
 
 }
 return __p
