@@ -165,7 +165,7 @@ class BuilderView extends Backbone.View
     unless !Formbuilder.options.AUTOSAVE
       setInterval =>
         @saveForm.call(@)
-      , 5000
+      , 2000
 
     $(window).bind 'beforeunload', =>
       if @formSaved then undefined else Formbuilder.options.dict.UNSAVED_CHANGES

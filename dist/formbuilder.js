@@ -296,7 +296,7 @@
       if (!!Formbuilder.options.AUTOSAVE) {
         setInterval(function() {
           return _this.saveForm.call(_this);
-        }, 5000);
+        }, 2000);
       }
       return $(window).bind('beforeunload', function() {
         if (_this.formSaved) {
@@ -841,6 +841,16 @@
 }).call(this);
 
 (function() {
+  Formbuilder.registerField('tel', {
+    order: 30,
+    view: "<input type='tel' />",
+    edit: "<%= Formbuilder.templates['edit/size']() %>\n<%= Formbuilder.templates['edit/min_max_length']() %>",
+    addButton: "<span class=\"symbol\"><span class=\"fa fa-phone\"></span></span> Telephone"
+  });
+
+}).call(this);
+
+(function() {
   Formbuilder.registerField('text', {
     order: 0,
     view: "<input type='text' class='rf-size-<%= rf.get(Formbuilder.options.mappings.SIZE) %>' />",
@@ -1160,6 +1170,8 @@ __p +=
 ((__t = ( Formbuilder.templates['partials/left_side']() )) == null ? '' : __t) +
 '\n' +
 ((__t = ( Formbuilder.templates['partials/right_side']() )) == null ? '' : __t) +
+'\n' +
+((__t = ( Formbuilder.templates['partials/save_button2']() )) == null ? '' : __t) +
 '\n<div class=\'fb-clear\'></div>';
 
 }
@@ -1171,7 +1183,7 @@ obj || (obj = {});
 var __t, __p = '', __e = _.escape, __j = Array.prototype.join;
 function print() { __p += __j.call(arguments, '') }
 with (obj) {
-__p += '<div class=\'fb-tab-pane active\' id=\'addField\'>\n  <div class=\'fb-add-field-types\'>\n    <span class=\'fb-section-heading\'>Form Elements</span>\n    <div class=\'section\'>\n      ';
+__p += '<div class=\'fb-tab-pane active\' id=\'addField\'>\n  <div class=\'fb-add-field-types\'>\n    <!-- span class=\'fb-section-heading\'>Form Elements</span -->\n    <div class=\'section\'>\n      ';
  _.each(_.sortBy(Formbuilder.inputFields, 'order'), function(f){ ;
 __p += '\n        <a data-field-type="' +
 ((__t = ( f.field_type )) == null ? '' : __t) +
@@ -1181,7 +1193,7 @@ __p += '\n        <a data-field-type="' +
 ((__t = ( f.addButton )) == null ? '' : __t) +
 '\n        </a>\n      ';
  }); ;
-__p += '\n    </div>\n    <span class=\'fb-section-heading\'>Content Elements</span>\n    <div class=\'section\'>\n      ';
+__p += '\n      ';
  _.each(_.sortBy(Formbuilder.nonInputFields, 'order'), function(f){ ;
 __p += '\n        <a data-field-type="' +
 ((__t = ( f.field_type )) == null ? '' : __t) +
@@ -1225,7 +1237,7 @@ this["Formbuilder"]["templates"]["partials/right_side"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<div class=\'fb-right\'>\n  <div class=\'fb-no-response-fields\'>No response fields</div>\n  <div class=\'fb-response-fields\'></div>\n</div>\n';
+__p += '<div class=\'fb-right\'>\n  <div class=\'fb-no-response-fields\'><h4>This is your waiver template canvas.</h4></h4><h4>Add elements from the left by doing the following.</h4><ul><li><h5>Click elements on the left.</h5></li><li><h5>Drag and drop elements on the left.</h5></li><li><h5>Change the template name, status, acccess url and exit url by clicking them above.</h5></li><li><h5>Work worry free! Your template auto-saves your work.</h5></li></ul></div>\n  <div class=\'fb-response-fields\'></div>\n</div>\n';
 
 }
 return __p
@@ -1236,6 +1248,18 @@ obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
 __p += '<div class=\'fb-save-wrapper\'>\n  <button class=\'js-save-form ' +
+((__t = ( Formbuilder.options.BUTTON_CLASS )) == null ? '' : __t) +
+'\'></button>\n</div>';
+
+}
+return __p
+};
+
+this["Formbuilder"]["templates"]["partials/save_button2"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape;
+with (obj) {
+__p += '<div class=\'fb-save-wrapper2\'>\n  <button class=\'js-save-form ' +
 ((__t = ( Formbuilder.options.BUTTON_CLASS )) == null ? '' : __t) +
 '\'></button>\n</div>';
 
