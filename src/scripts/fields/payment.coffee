@@ -1,6 +1,6 @@
 Formbuilder.registerField 'payment',
 
-  order: 67
+  order: 56
 
   view: """
     <div id="payment"><center><span class="fa fa-credit-card fa-5x"></span></center></div>

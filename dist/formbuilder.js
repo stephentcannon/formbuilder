@@ -767,6 +767,16 @@
 }).call(this);
 
 (function() {
+  Formbuilder.registerField('file', {
+    order: 55,
+    view: "<input type='file' />",
+    edit: "",
+    addButton: "<span class=\"symbol\"><span class=\"fa fa-cloud-upload\"></span></span> File"
+  });
+
+}).call(this);
+
+(function() {
   Formbuilder.registerField('horizontal_rule', {
     order: 5,
     type: 'non_input',
@@ -794,6 +804,16 @@
     view: "<label class='section-name'><%= rf.get(Formbuilder.options.mappings.LABEL) %></label>\n<p><%= rf.get(Formbuilder.options.mappings.DESCRIPTION) %></p>",
     edit: "<div class='fb-edit-section-header'>Label</div>\n<input type='text' data-rv-input='model.<%= Formbuilder.options.mappings.LABEL %>' />\n<textarea data-rv-input='model.<%= Formbuilder.options.mappings.DESCRIPTION %>'\n  placeholder='Add text to display on your form.'></textarea>",
     addButton: "<span class=\"symbol\">&#182;</span> Paragraph"
+  });
+
+}).call(this);
+
+(function() {
+  Formbuilder.registerField('payment', {
+    order: 56,
+    view: "<div id=\"payment\"><center><span class=\"fa fa-credit-card fa-5x\"></span></center></div>",
+    edit: "",
+    addButton: "<span class=\"symbol\"><span class=\"fa fa-credit-card\"></span></span> Payment"
   });
 
 }).call(this);
