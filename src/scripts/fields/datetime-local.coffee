@@ -6,7 +6,6 @@ Formbuilder.registerField 'datetime-local',
     <div class='input-line'>
       <span class='datetime-local'>
         <input type="datetime-local" />
-        <label>Time</label>
       </span>
     </div>
   """
